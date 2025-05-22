@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './MainContainer.css';
 import ConversationList from '../ConversationList/ConversationList';
 import ChatMessage from '../ChatMessage/ChatMessage';
