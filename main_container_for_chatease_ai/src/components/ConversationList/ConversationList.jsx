@@ -4,14 +4,28 @@ import './ConversationList.css';
 /**
  * ConversationItem - Component for a single conversation in the list
  */
-const ConversationItem = ({ title, preview, active, onClick }) => {
+const ConversationItem = ({ title, preview, active, onClick, onDelete, id }) => {
+  const handleDelete = (e) => {
+    e.stopPropagation();
+    onDelete(id);
+  };
+
   return (
     <div 
       className={`conversation-item ${active ? 'active' : ''}`}
       onClick={onClick}
     >
-      <div className="conversation-title">{title}</div>
-      <div className="conversation-preview">{preview}</div>
+      <div className="conversation-content">
+        <div className="conversation-title">{title}</div>
+        <div className="conversation-preview">{preview}</div>
+      </div>
+      <button 
+        className="conversation-delete" 
+        onClick={handleDelete}
+        title="Delete conversation"
+      >
+        ×
+      </button>
     </div>
   );
 };
@@ -24,21 +38,19 @@ const ConversationItem = ({ title, preview, active, onClick }) => {
  * @param {number} props.activeConversationId - ID of the currently active conversation
  * @param {function} props.onSelectConversation - Callback when conversation is selected
  * @param {function} props.onNewChat - Callback when New Chat button is clicked
+ * @param {function} props.onDeleteConversation - Callback when a conversation is deleted
  */
 const ConversationList = ({ 
   conversations = [], 
   activeConversationId, 
   onSelectConversation = () => {},
-  onNewChat = () => {}
+  onNewChat = () => {},
+  onDeleteConversation = () => {}
 }) => {
-  // If no conversations are provided, use sample data
-  const sampleConversations = [
-    { id: 1, title: 'General Assistant', preview: 'How can I help you today?' },
-    { id: 2, title: 'Code Helper', preview: 'Let me help with that code...' },
-    { id: 3, title: 'Creative Writing', preview: 'Here\'s a story idea for you...' }
-  ];
-
-  const displayConversations = conversations.length > 0 ? conversations : sampleConversations;
+  const handleDeleteConversation = (id) => {
+    // Confirmation is handled in the MainContainer component
+    onDeleteConversation(id);
+  };
   
   return (
     <div className="chat-sidebar">
