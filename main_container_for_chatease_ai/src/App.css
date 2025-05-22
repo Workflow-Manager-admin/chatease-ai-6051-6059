@@ -98,16 +98,19 @@ body {
   background-color: var(--kavia-orange);
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--btn-radius);
   padding: 10px 20px;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
 }
 
 .btn:hover {
-  background-color: #FF8B4D;
+  background-color: var(--kavia-accent);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
 }
 
 .btn-large {
