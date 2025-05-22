@@ -1,0 +1,68 @@
+/* ChatInput styles - extracted from MainContainer.css for better modularity */
+
+.chat-input-area {
+  padding: 16px;
+  border-top: 1px solid var(--border-color);
+}
+
+.chat-form {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  font-size: 0.95rem;
+  resize: none;
+  max-height: 120px;
+  transition: border-color 0.2s ease;
+}
+
+.chat-input:focus {
+  outline: none;
+  border-color: var(--kavia-orange);
+}
+
+.chat-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.send-button {
+  background-color: var(--kavia-orange);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.send-button:hover {
+  background-color: #FF8B4D;
+}
+
+.send-icon {
+  font-size: 0.8rem;
+}
+
+.input-features {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.feature-hint {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+}
