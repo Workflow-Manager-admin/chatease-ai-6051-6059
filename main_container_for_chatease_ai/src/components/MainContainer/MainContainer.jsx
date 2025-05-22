@@ -72,20 +72,63 @@ const MainContainer = () => {
         activeConversationId={activeConversationId}
         onSelectConversation={setActiveConversationId}
         onNewChat={handleNewChat}
+        onDeleteConversation={deleteConversation}
       />
 
       <div className="chat-main">
-        <div className="chat-header">
-          <h2>{activeConversation.title}</h2>
-          <div className="chat-actions">
-            <button className="action-btn">
-              <span className="action-icon">⚙️</span>
-            </button>
+        {isRenaming ? (
+          <div className="rename-dialog">
+            <form onSubmit={handleRenameSubmit}>
+              <input
+                type="text"
+                value={newTitle}
+                onChange={(e) => setNewTitle(e.target.value)}
+                placeholder="Enter new title"
+                autoFocus
+              />
+              <div className="rename-actions">
+                <button type="submit" className="btn">Save</button>
+                <button 
+                  type="button" 
+                  className="btn-secondary" 
+                  onClick={() => setIsRenaming(false)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
           </div>
-        </div>
+        ) : (
+          <div className="chat-header">
+            <h2>{activeConversation?.title}</h2>
+            <div className="chat-actions">
+              <button 
+                className="action-btn" 
+                title="Rename conversation"
+                onClick={handleRenameClick}
+              >
+                <span className="action-icon">✏️</span>
+              </button>
+              <button 
+                className="action-btn" 
+                title="Clear conversation"
+                onClick={clearMessages}
+              >
+                <span className="action-icon">🗑️</span>
+              </button>
+              <button 
+                className="action-btn" 
+                title="Delete conversation"
+                onClick={handleDeleteConversation}
+              >
+                <span className="action-icon">❌</span>
+              </button>
+            </div>
+          </div>
+        )}
         
         <div className="messages-container">
-          {messages.map(message => (
+          {activeConversation?.messages?.map(message => (
             <ChatMessage 
               key={message.id}
               type={message.type}
@@ -93,10 +136,20 @@ const MainContainer = () => {
               avatar={message.avatar}
             />
           ))}
+          
+          {isLoading && (
+            <div className="typing-indicator">
+              <span>AI is typing</span>
+              <span className="dot">.</span>
+              <span className="dot">.</span>
+              <span className="dot">.</span>
+            </div>
+          )}
+          
           <div ref={messagesEndRef} />
         </div>
         
-        <ChatInput onSendMessage={handleSendMessage} />
+        <ChatInput onSendMessage={sendMessage} ref={inputRef} />
       </div>
     </div>
   );
