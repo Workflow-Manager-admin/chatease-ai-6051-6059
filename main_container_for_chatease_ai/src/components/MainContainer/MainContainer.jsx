@@ -50,7 +50,8 @@ const MainContainer = () => {
       avatar: 'You'
     };
     
-    setMessages([...messages, newUserMessage]);
+    // Use functional update to ensure we have the latest state
+    setMessages(prevMessages => [...prevMessages, newUserMessage]);
     
     // In a real app, you would send the message to an API here
     // and handle the response
