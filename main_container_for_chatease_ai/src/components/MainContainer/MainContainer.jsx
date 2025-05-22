@@ -71,6 +71,14 @@ const MainContainer = () => {
   // Find the active conversation
   const activeConversation = conversations.find(c => c.id === activeConversationId) || conversations[0];
   
+  // Reference for the messages container to enable auto-scrolling
+  const messagesEndRef = useRef(null);
+  
+  // Auto-scroll to the bottom when messages change
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+  
   // Handle starting a new chat
   const handleNewChat = () => {
     // In a real app, you would create a new conversation in the backend
