@@ -1,0 +1,4 @@
+{
+    "command": "npm run test",
+    "working_directory": "/home/kavia/workspace/code-generation/chatease-ai-6051-6059/main_container_for_chatease_ai"
+}
