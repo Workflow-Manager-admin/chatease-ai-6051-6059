@@ -114,6 +114,7 @@ const MainContainer = () => {
               avatar={message.avatar}
             />
           ))}
+          <div ref={messagesEndRef} />
         </div>
         
         <ChatInput onSendMessage={handleSendMessage} />
