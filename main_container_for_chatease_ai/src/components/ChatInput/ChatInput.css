@@ -58,6 +58,19 @@
   transform: translateY(-1px);
 }
 
+.send-button.disabled {
+  background-color: var(--text-secondary);
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.send-button.disabled:hover {
+  background-color: var(--text-secondary);
+  box-shadow: var(--shadow-sm);
+  transform: none;
+}
+
 .send-icon {
   font-size: 0.8rem;
 }
