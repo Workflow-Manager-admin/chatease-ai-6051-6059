@@ -37,6 +37,10 @@
   font-size: 1.2rem;
   font-weight: 600;
   color: var(--text-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
 }
 
 .chat-actions {
@@ -67,6 +71,55 @@
   font-size: 1.1rem;
 }
 
+/* Rename dialog */
+.rename-dialog {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--background-primary);
+}
+
+.rename-dialog form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rename-dialog input {
+  padding: 10px 12px;
+  border-radius: var(--btn-radius);
+  border: 1px solid var(--border-color);
+  font-size: 1rem;
+  width: 100%;
+}
+
+.rename-dialog input:focus {
+  outline: none;
+  border-color: var(--kavia-orange);
+  box-shadow: 0 0 0 2px rgba(232, 122, 65, 0.2);
+}
+
+.rename-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.btn-secondary {
+  background-color: var(--background-tertiary);
+  color: var(--text-color);
+  border: none;
+  border-radius: var(--btn-radius);
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--border-color);
+}
+
 /* Messages Container */
 .messages-container {
   flex: 1;
@@ -76,6 +129,45 @@
   flex-direction: column;
   gap: 20px;
   background-color: var(--background-primary);
+}
+
+/* Typing indicator */
+.typing-indicator {
+  align-self: flex-start;
+  background-color: var(--background-secondary);
+  padding: 10px 16px;
+  border-radius: var(--card-radius);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+  border-top-left-radius: 0;
+  margin-top: 10px;
+  box-shadow: var(--shadow-sm);
+}
+
+.typing-indicator .dot {
+  font-size: 1.2rem;
+  line-height: 0.5;
+  animation: dot-flashing 1s infinite alternate;
+  opacity: 0.5;
+}
+
+.typing-indicator .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes dot-flashing {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0.8;
+  }
 }
 
 /* Responsive styles */
