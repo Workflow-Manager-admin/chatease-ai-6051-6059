@@ -62,15 +62,24 @@ const ConversationList = ({
       </div>
       
       <div className="conversation-list">
-        {displayConversations.map((convo) => (
+        {conversations.map((convo) => (
           <ConversationItem
             key={convo.id}
+            id={convo.id}
             title={convo.title}
             preview={convo.preview}
             active={convo.id === activeConversationId}
             onClick={() => onSelectConversation(convo.id)}
+            onDelete={handleDeleteConversation}
           />
         ))}
+        
+        {conversations.length === 0 && (
+          <div className="empty-state">
+            <p>No conversations yet</p>
+            <button className="btn" onClick={onNewChat}>Start a new chat</button>
+          </div>
+        )}
       </div>
     </div>
   );
